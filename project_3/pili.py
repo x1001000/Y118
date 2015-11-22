@@ -4,7 +4,7 @@ import time
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
-pins = [10,9,11,5,6,13,19,26]
+pins = [14,15,18,23,24,25,8,7]
 
 for each in pins:
   GPIO.setup(each, GPIO.OUT)
@@ -17,6 +17,6 @@ def all_off():
 for i in range(len(pins)):
   all_off()
   GPIO.output(pins[i], True)
-  time.sleep(0.5)
+  time.sleep(0.1)
   
 GPIO.cleanup()
