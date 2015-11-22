@@ -13,10 +13,11 @@ for each in pins:
 def all_off():
   for each in pins:
     GPIO.output(each, False)
-
-for i in range(len(pins)):
-  all_off()
-  GPIO.output(pins[i], True)
-  time.sleep(0.1)
+    
+while True:
+  for i in range(len(pins)):
+    all_off()
+    GPIO.output(pins[i], True)
+    time.sleep(0.1)
   
 GPIO.cleanup()
