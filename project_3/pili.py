@@ -23,6 +23,7 @@ while True:
   for i in range(len(pins)):
     all_off()
     GPIO.output(pins[-i-1], True)
+    GPIO.output(pins[(-i-1)%len(pins)], True)
     time.sleep(0.1)
   
 GPIO.cleanup()
