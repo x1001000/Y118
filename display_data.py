@@ -3,6 +3,35 @@ import time
 import urllib2
 import re
 
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
+segments = (10, 9, 11, 5, 6, 13, 19, 26)
+for segment in segments:
+    GPIO.setup(segment, GPIO.OUT)
+    GPIO.output(segment, 0)
+digits = (3, 4, 17, 27)
+for digit in digits:
+    GPIO.setup(digit, GPIO.OUT)
+    GPIO.output(digit, 1)
+
+dictionary = {
+    ' ':(0,0,0,0,0,0,0),
+    '0':(1,1,1,1,1,1,0),
+    '1':(0,1,1,0,0,0,0),
+    '2':(1,1,0,1,1,0,1),
+    '3':(1,1,1,1,0,0,1),
+    '4':(0,1,1,0,0,1,1),
+    '5':(1,0,1,1,0,1,1),
+    '6':(1,0,1,1,1,1,1),
+    '7':(1,1,1,0,0,0,0),
+    '8':(1,1,1,1,1,1,1),
+    '9':(1,1,1,1,0,1,1),
+    'Y':(0,1,1,1,0,1,1),
+    'O':(1,1,0,0,0,1,1),
+    'P':(1,1,0,0,1,1,1),
+    'S':(1,0,1,0,0,1,1)}
+
 data_to_display = 'OOPS'
 
 for t in range(10):
@@ -11,39 +40,9 @@ for t in range(10):
     for line in page_html:
         match = re.search('likecount..(..)', line)
         if match:
-            data_to_display = '00' + match.group(1)
+            data_to_display = '  ' + match.group(1)
             print data_to_display
             break
-
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setwarnings(False)
-
-    segments = (10, 9, 11, 5, 6, 13, 19, 26)
-    for segment in segments:
-        GPIO.setup(segment, GPIO.OUT)
-        GPIO.output(segment, 0)
-
-    digits = (3, 4, 17, 27)
-    for digit in digits:
-        GPIO.setup(digit, GPIO.OUT)
-        GPIO.output(digit, 1)
-
-    dictionary = {' ':(0,0,0,0,0,0,0),
-        '0':(1,1,1,1,1,1,0),
-        '1':(0,1,1,0,0,0,0),
-        '2':(1,1,0,1,1,0,1),
-        '3':(1,1,1,1,0,0,1),
-        '4':(0,1,1,0,0,1,1),
-        '5':(1,0,1,1,0,1,1),
-        '6':(1,0,1,1,1,1,1),
-        '7':(1,1,1,0,0,0,0),
-        '8':(1,1,1,1,1,1,1),
-        '9':(1,1,1,1,0,1,1),
-        'Y':(0,1,1,1,0,1,1),
-        'O':(1,1,0,0,0,1,1),
-        'P':(1,1,0,0,1,1,1),
-        'S':(1,0,1,0,0,1,1)}
-
     for n in range(100):
         for digit in digits:
             GPIO.output(digit, 1)
