@@ -52,5 +52,6 @@ for t in range(10):
             GPIO.output(segments[i], on_or_off)
             i += 1
         time.sleep(0.006)
+        GPIO.output(digits[n%4], 1)
 
 GPIO.cleanup()
