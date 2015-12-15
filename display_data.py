@@ -43,7 +43,7 @@ for t in range(10):
             data_to_display = '  ' + match.group(1)
             print data_to_display
             break
-    for n in range(100):
+    for n in range(400):
         for digit in digits:
             GPIO.output(digit, 1)
         GPIO.output(digits[n%4], 0)
