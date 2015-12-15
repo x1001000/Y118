@@ -34,7 +34,7 @@ dictionary = {
 
 data_to_display = 'OOPS'
 
-for t in range(10):
+for t in range(20):
     page_html = urllib2.urlopen('https://www.facebook.com/dreamsat17/photos/gm.1703633339852136/967224039981992').readlines()
     #print page_html
     for line in page_html:
@@ -43,7 +43,7 @@ for t in range(10):
             data_to_display = '  ' + match.group(1)
             print data_to_display
             break
-    for n in range(400):
+    for n in range(500):
         for digit in digits:
             GPIO.output(digit, 1)
         GPIO.output(digits[n%4], 0)
