@@ -2,10 +2,12 @@ import RPi.GPIO as GPIO
 import time
 import urllib2
 import re
-page_html = urllib2.urlopen('https://www.facebook.com/dreamsat17/photos/gm.1703633339852136/967224039981992').readlines()
-#print page_html
+
 data_to_display = 'OOPS'
+
 for t in range(10):
+    page_html = urllib2.urlopen('https://www.facebook.com/dreamsat17/photos/gm.1703633339852136/967224039981992').readlines()
+    #print page_html
     for line in page_html:
         match = re.search('likecount..(..)', line)
         if match:
@@ -16,16 +18,16 @@ for t in range(10):
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
 
-    #data_to_display = 'Y416'
-
     segments = (10, 9, 11, 5, 6, 13, 19, 26)
     for segment in segments:
         GPIO.setup(segment, GPIO.OUT)
         GPIO.output(segment, 0)
+
     digits = (3, 4, 17, 27)
     for digit in digits:
         GPIO.setup(digit, GPIO.OUT)
         GPIO.output(digit, 1)
+
     dictionary = {' ':(0,0,0,0,0,0,0),
         '0':(1,1,1,1,1,1,0),
         '1':(0,1,1,0,0,0,0),
