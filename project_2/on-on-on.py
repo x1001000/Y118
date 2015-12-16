@@ -35,7 +35,7 @@ while True:
     #while push == 0:
         #time.sleep(0.002)
     #while push == 1:
-        p.ChangeFrequency(freq[melody[note]]
+        p.ChangeFrequency(freq[melody[note]])
         time.sleep(1)
         note += 1
         note %= 30
