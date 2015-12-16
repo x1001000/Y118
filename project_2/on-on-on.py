@@ -36,6 +36,8 @@ melody = [  'G3','C4','C4','E4','A4','E4','G4',
             'F4','F4','F4','E4','A3','B3','C4','D4']
 
 note = 0
+print(push)
+'''
 while True:
     while push == 0:
         print('push=0')
@@ -46,3 +48,4 @@ while True:
         time.sleep(0.05)
     note += 1
     note %= 30
+'''
