@@ -42,7 +42,7 @@ while True:
         time.sleep(0.001)
     while GPIO.input(push) == True:
         p.start(99)
-        p.ChangeFrequency(freq[melody[note]])
+        p.ChangeFrequency(freq[melody[note]]*2)
         time.sleep(0.05)
     note += 1
     note %= 30
