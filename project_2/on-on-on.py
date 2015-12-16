@@ -12,7 +12,7 @@ GPIO.setup(pushON, GPIO.OUT)
 GPIO.output(pushON, True)
 GPIO.setup(push, GPIO.IN)
 GPIO.setup(buzz, GPIO.OUT)
-p = GPIO.PWM(buzz, 0.1)
+p = GPIO.PWM(buzz, 1)
 p.start(25)
 
 freq = {    'C3':  131,
@@ -39,7 +39,7 @@ note = 0
 
 while True:
     while GPIO.input(push) == False:
-        p.ChangeFrequency(0.1)
+        p.stop()
         time.sleep(0.002)
     while GPIO.input(push) == True:
         p.ChangeFrequency(freq[melody[note]])
