@@ -41,7 +41,7 @@ while True:
         p.stop()
         time.sleep(0.001)
     while GPIO.input(push) == True:
-        p.start(90)
+        p.start(99)
         p.ChangeFrequency(freq[melody[note]])
         time.sleep(0.05)
     note += 1
