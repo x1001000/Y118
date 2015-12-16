@@ -4,9 +4,12 @@ import time
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
+pushON = 27
 push = 17
 buzz = 4
 
+GPIO.setup(pushON, GPIO.OUT)
+GPIO.output(pushON, True)
 GPIO.setup(push, GPIO.IN)
 GPIO.setup(buzz, GPIO.OUT)
 p = GPIO.PWM(buzz, 1)
