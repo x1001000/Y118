@@ -13,4 +13,4 @@ for r in row:
 for c in col:
     GPIO.setup(c, GPIO.OUT)
     GPIO.output(c, 1)
-    sleep.time(1)
+    time.sleep(1)
