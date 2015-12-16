@@ -29,7 +29,7 @@ dictionary = {' ':(0,0,0,0,0,0,0),
     'P':(1,1,0,0,1,1,1),
     'S':(1,0,1,0,0,1,1)}
 
-for n in range(50):
+for n in range(5000):
     for digit in digits:
         GPIO.output(digit, 1)
     GPIO.output(digits[n%4], 0)
@@ -37,6 +37,6 @@ for n in range(50):
     for on_or_off in dictionary[data_to_display[n%4]]:
         GPIO.output(segments[i], on_or_off)
         i += 1
-    time.sleep(0.4)
+    time.sleep(0.006)
 
 GPIO.cleanup()
