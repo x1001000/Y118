@@ -10,7 +10,7 @@ buzz = 4
 GPIO.setup(push, GPIO.IN)
 GPIO.setup(buzz, GPIO.OUT)
 p = GPIO.PWM(buzz, 2)
-p.start(25)
+p.start(10)
 
 freq = {    'C3':  131,
             'D3':  147,
