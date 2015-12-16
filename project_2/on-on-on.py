@@ -38,8 +38,10 @@ melody = [  'G3','C4','C4','E4','A4','E4','G4',
 note = 0
 while True:
     while push == 0:
+        print('push=0')
         time.sleep(0.001)
     while push == 1:
+        print('push=1')
         p.ChangeFrequency(freq[melody[note]])
         time.sleep(0.05)
     note += 1
