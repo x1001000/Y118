@@ -4,8 +4,8 @@ import urllib2
 import re
 import multiprocessing
 
-URL = 'https://www.facebook.com/YUCSA12'
-RE = '&#x80b2;&#x6210;&#x9ad8;&#x4e2d;&#x73ed;&#x806f;&#x6703;. (.),(...)'
+URL = 'https://www.facebook.com/YUCSA12/likes'
+RE = '(\d{1}),(\d{3})'
 STRING = 'Y118'
 
 GPIO.setmode(GPIO.BCM)
@@ -34,9 +34,9 @@ dictionary = {
     '8':(1,1,1,1,1,1,1),
     '9':(1,1,1,1,0,1,1),
     'Y':(0,1,1,1,0,1,1),
-    'O':(1,1,0,0,0,1,1),
+    'O':(1,1,1,1,1,1,0),
     'P':(1,1,0,0,1,1,1),
-    'S':(1,0,1,0,0,1,1)}
+    'S':(1,0,1,1,0,1,1)}
 
 def display(S, no_use):
     n = 0
@@ -53,12 +53,13 @@ def display(S, no_use):
         n %= 4
 
 def likes(U, R):
+    time.sleep(1)  # in case been blocked
     page_source = urllib2.urlopen(U).readlines()
     #print page_source
     for line in page_source:
         match = re.search(R, line)
         if match:
-            return match.group(1) + match.group(2)
+            return match.group(1)+match.group(2)
     return 'OOPS'
 
 while True:    
