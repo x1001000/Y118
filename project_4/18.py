@@ -1,19 +1,68 @@
-import random   #¶×¤J¶Ã¼Æ¼Ò²Õ  #import standard library random
+'''
+import random   #åŒ¯å…¥äº‚æ•¸æ¨¡çµ„  #import standard library random
 
-def  a():    #«Ø¥ß¤@­Ó·s¨ç¼Æ¦W¬°a()
+def  a():    #å»ºç«‹ä¸€å€‹æ–°å‡½æ•¸åç‚ºa()
     return random.choice(['1','2','3','4','5','6'])
     
-word = [a(),a(),a(),a()]    #ÀH¾÷±o¨ì¥|­Ó¼Æ¦r°µ«á­±ªº°j°é
+word = [a(),a(),a(),a()]    #éš¨æ©Ÿå¾—åˆ°å››å€‹æ•¸å­—åšå¾Œé¢çš„è¿´åœˆ
 
-while True:   #¤@­ÓµL­­°j°é
+while True:   #ä¸€å€‹ç„¡é™è¿´åœˆ
     for n in range(4) 
-        for digit in digits:  #Åı©Ò¦³¿OÅÜ¦¨·tªº
+        for digit in digits:  #è®“æ‰€æœ‰ç‡ˆè®Šæˆæš—çš„
             GPIO.output(digit, 1)   
-        GPIO.output(digits[n], 0)    #«G¦ì¸mnªº¿O²Õ¡A¦]¬°²{¦b¥u¦³range(4)©Ò¥H¤£¥Î%4
+        GPIO.output(digits[n], 0)    #äº®ä½ç½®nçš„ç‡ˆçµ„ï¼Œå› ç‚ºç¾åœ¨åªæœ‰range(4)æ‰€ä»¥ä¸ç”¨%4
         i = 0
-        for on_or_off  in dictionary[word[n]]:   #¯Á¤Ş¦r¨å¦ì¸mnªº¦r¡A¥Îfor°j°é«G¸Ó«Gªº¿OºŞ
+        for on_or_off  in dictionary[word[n]]:   #ç´¢å¼•å­—å…¸ä½ç½®nçš„å­—ï¼Œç”¨forè¿´åœˆäº®è©²äº®çš„ç‡ˆç®¡
             GPIO.output[segments[i],on_or_off)
             i += 1
-        time.sleep(0.001)    #¨C­Ó¤C¬qÅã¥Ü¾¹«G0.001¬í
-    if GPIO.input(2) == True   #«ö¶s¶}Ãöªº·P´ú
-        word = [a(),a(),a(),a()]   #¦pªG¤W­±ªºif¬OTrue´N·|§ä¤@­Ó·sªº¦r¦ê
+        time.sleep(0.001)    #æ¯å€‹ä¸ƒæ®µé¡¯ç¤ºå™¨äº®0.001ç§’
+    if GPIO.input(2) == True   #æŒ‰éˆ•é–‹é—œçš„æ„Ÿæ¸¬
+        word = [a(),a(),a(),a()]   #å¦‚æœä¸Šé¢çš„ifæ˜¯Trueå°±æœƒæ‰¾ä¸€å€‹æ–°çš„å­—ä¸²
+'''
+
+import RPi.GPIO as GPIO
+import time
+import random
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(2, GPIO.IN)
+
+segments = (5, 9, 17, 13, 19, 11, 4, 6)
+for segment in segments:
+    GPIO.setup(segment, GPIO.OUT)
+    GPIO.output(segment, 0)
+
+digits = (26, 10, 27, 22)
+for digit in digits:
+    GPIO.setup(digit, GPIO.OUT)
+    GPIO.output(digit, 1)
+
+dictionary = {' ':(0,0,0,0,0,0,0),
+    '0':(1,1,1,1,1,1,0),
+    '1':(0,1,1,0,0,0,0),
+    '2':(1,1,0,1,1,0,1),
+    '3':(1,1,1,1,0,0,1),
+    '4':(0,1,1,0,0,1,1),
+    '5':(1,0,1,1,0,1,1),
+    '6':(1,0,1,1,1,1,1),}
+
+def a():
+    return random.choice(['1','2','3','4','5','6'])
+
+word=[a(),a(),a(),a()]
+
+while True:
+  for n in range(4):
+      for digit in digits: # all digits off
+          GPIO.output(digit, 1)
+      GPIO.output(digits[n], 0)
+      i = 0
+      for on_or_off in dictionary[word[n]]:
+          GPIO.output(segments[i], on_or_off)
+          i += 1
+      time.sleep(0.001)
+  if GPIO.input(2) == True:
+      word=[a(),a(),a(),a()]
+
+GPIO.cleanup()
