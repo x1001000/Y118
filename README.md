@@ -7,6 +7,6 @@
 5. 光控開關
 6. PM2.5紅綠燈 (an IoT app)
 7. 溫度小數據 (an IoT app)
-8. 許願矩陣
+8. [LED看板](https://github.com/rm-hull/max7219)
 9. LED小龍
 10. 十字路口 → 按鈕提早切換
